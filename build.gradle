@@ -1,0 +1,40 @@
+buildscript {
+	repositories {
+		mavenLocal()
+		mavenCentral()
+		jcenter()
+	}
+	dependencies {
+		classpath "org.wisepersist:gwt-gradle-plugin:1.1.11"
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'gwt'
+apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
+
+repositories { mavenCentral() }
+
+dependencies {
+	implementation 'com.google.guava:guava:13.0'
+    implementation 'commons-logging:commons-logging:1.2'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+gwt {
+	gwtVersion='2.8.2'
+	minHeapSize = "512M"
+	maxHeapSize = "1024M"
+
+	modules 'org.wisepersist.gradle.plugins.gwt.example.Example'
+
+	compiler {
+		strict = true;
+		disableClassMetadata = true;
+		disableCastChecking = true;
+	}
+}
